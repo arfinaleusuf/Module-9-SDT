@@ -24,18 +24,47 @@ class Empolyee(User):
 class Admin(User):
     def __init__(self, name, phone, email, address):
         super().__init__(name, phone, email, address)
-        self.employees = [] # eta hocche amader database
 
-    def add_employee(self,name, email, phone, address, age, designation, salary):
-        #Employee class er ekta object toiri hoye jabe
-        empoloyee = Empolyee(name, email, phone,address, age, designation, salary)
-        self.employees.append(empoloyee)
-        print(f"{name} is added!!")
+
+    def add_employee(self, restaurent, employee):
+        restaurent.add_employee(employee)
+
+    def view_employee(self, restaurent):
+        restaurent.view_employee()
+
+class Restaurent:
+    def __init__(self, name):
+        self.name = name
+        self.employees = [] # eta hocche amader database
+    
+    def add_employee(self, employee):
+        self.employees.append(employee)
 
     def view_employee(self):
         print("Employee List!!")
         for emp in self.employees:
             print(emp.name, emp.email, emp.phone, emp.address)
+
+
+class Menu:
+    def __init__(self):
+        self.items = [] #items er database
+
+    def add_menu_items(self, item):
+        self.items.append(item)
+        
+    def find_item(self, item_name):
+        for item in self.items:
+            if item.name.lower() == item_name.lower():
+                return item_name
+        return None
+    def remove_item(self, item_name):
+        item = self.find_item(item_name)
+        if item:
+            self.items.remove(item)
+            print("Item deleted")
+        else:
+            print("Item not found")
 
 ad = Admin("korim", "14196565", "korim@gmail.com", "Dhaka")
 ad.add_employee("Shagor", "s@gmail.com", "5644954", "khulna", 32, "chef", 12000)
