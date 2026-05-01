@@ -27,19 +27,18 @@ class Customer(User):
             print("item added")
         else:
             print('item not found')
-
+            
     def view_cart(self):
         print("***View Cart***")
         print("Name\tprice\tQuantity")
         for item, quantity in self.cart.items.items():
-            print(f"{item.name} {item.price} {item.quantity}")
-        print("total price: {self.cart.total_price}")
+            print(f"{item.name}\t{item.price} {item.quantity}")
+        print(f"total price: {self.cart.total_price}")
 
 class Order:
     def __init__(self):
         self.items = {}
-
-    def add_item(self):
+    def add_item(self, item):
         if item in self.items:
             self.items[item] += item.quantity  # jodi item ta cart e already thake
         else:
@@ -49,6 +48,7 @@ class Order:
         if item in self.items:
             del self.items[item]
 
+    @property
     def total_price(self):
         return sum(item.price * quantity for item, quantity in self.items.items())
     
@@ -108,7 +108,7 @@ class Menu:
     def find_item(self, item_name):
         for item in self.items:
             if item.name.lower() == item_name.lower():
-                return item_name
+                return item
         return None
     def remove_item(self, item_name):
         item = self.find_item(item_name)
@@ -140,3 +140,9 @@ admin.add_new_item(mamar_res,item2)
 
 customer1 = Customer("Rohin","rahim@gmail.com", 6546432, "Dhaka")
 customer1.view_menu(mamar_res)
+
+item_name = input("enter item name: ")
+item_quantity = int(input("Enter Item Quantity: "))
+
+customer1.add_to_cart(mamar_res, item_name, item_quantity)
+customer1.view_cart()
