@@ -32,6 +32,25 @@ class Customer(User):
             print(f"{item.name} {item.price} {item.quantity}")
         print("total price: {self.cart.total_price}")
 
+class Order:
+    def __init__(self):
+        self.items = {}
+
+    def add_items(self):
+        if item in self.items:
+            self.items[item] += item.quantity  # jodi item ta cart e already thake
+        else:
+            self.items[item] = item.quantity  # cart e item jodi na thake
+
+    def remove(self, item):
+        if item in self.items:
+            del self.items[item]
+
+    def total_price(self):
+        return sum(item.price * quantity for item, quantity in self.items.items())
+    
+    def clear(self):
+        self.items = {}
 
 
 class Empolyee(User):
