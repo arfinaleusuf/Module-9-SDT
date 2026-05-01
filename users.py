@@ -38,27 +38,6 @@ class Customer(User):
             print(f"{item.name}\t{item.price} {item.quantity}")
         print(f"total price: {self.cart.total_price}")
 
-class Order:
-    def __init__(self):
-        self.items = {}
-    def add_item(self, item):
-        if item in self.items:
-            self.items[item] += item.quantity  # jodi item ta cart e already thake
-        else:
-            self.items[item] = item.quantity  # cart e item jodi na thake
-
-    def remove(self, item):
-        if item in self.items:
-            del self.items[item]
-
-    @property
-    def total_price(self):
-        return sum(item.price * quantity for item, quantity in self.items.items())
-    
-    def clear(self):
-        self.items = {}
-
-
 class Empolyee(User):
     def __init__(self, name, phone, email, address, age, designation, salary):
         super().__init__(name, phone, email, address)
@@ -85,6 +64,27 @@ class Admin(User):
 
     def delete_item(self, restaurant, item):
         restaurant.menu.remove_item(item)
+
+class Order:
+    def __init__(self):
+        self.items = {}
+    def add_item(self, item):
+        if item in self.items:
+            self.items[item] += item.quantity  # jodi item ta cart e already thake
+        else:
+            self.items[item] = item.quantity  # cart e item jodi na thake
+
+    def remove(self, item):
+        if item in self.items:
+            del self.items[item]
+
+    @property
+    def total_price(self):
+        return sum(item.price * quantity for item, quantity in self.items.items())
+    
+    def clear(self):
+        self.items = {}
+
 
 class Restaurent:
     def __init__(self, name):
