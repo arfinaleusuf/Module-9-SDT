@@ -22,9 +22,12 @@ class Customer(User):
     def add_to_cart(self, restaurent, item_name, quantity):
         item = restaurent.menu.find_item(item_name)
         if item:
-            item.quantity = quantity
-            self.cart.add_item(item)
-            print("item added")
+            if quantity > item.quantity:
+                print("Item Quantity Exceeded!!")
+            else:
+                item.quantity = quantity
+                self.cart.add_item(item)
+                print("item added")
         else:
             print('item not found')
             
