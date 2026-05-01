@@ -70,3 +70,6 @@ class Admin(User):
     def delete_item(self, restaurant, item):
         restaurant.menu.remove_item(item)
 
+    def view_menu(self, restaurent):
+        restaurent.menu.show_menu()
+
