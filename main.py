@@ -11,7 +11,7 @@ def customer_menu():
     email = input("Enter Your Email: ")
     phone = input("Enter Your Phone: ")
     adderss = input("Enter Your Address: ")
-    customer = Customer(name = name, email = email, phone = phone, adderss = adderss)
+    customer = Customer(name = name, email = email, phone = phone, address = adderss)
 
     while True:
         print(f"Welcome {customer.name}")
@@ -21,12 +21,12 @@ def customer_menu():
         print("4. PayBill")
         print("5. Exit")
 
-        choice = int(input("Enter Your Choice"))
+        choice = int(input("Enter Your Choice: "))
         if choice == 1:
             customer.view_menu(mamar_restuarent)
         elif choice == 2:
             item_name = input("Enter Item Name: ")
-            item_quantity = int(input("Enter item Quantity"))
+            item_quantity = int(input("Enter item Quantity: "))
             customer.add_to_cart(mamar_restuarent, item_name, item_quantity)
         elif choice == 3:
             customer.view_cart()
@@ -43,7 +43,7 @@ def admin_menu():
     email = input("Enter Your Email: ")
     phone = input("Enter Your Phone: ")
     adderss = input("Enter Your Address: ")
-    admin = Admin(name = name, email = email, phone = phone, adderss = adderss)
+    admin = Admin(name = name, email = email, phone = phone, address = adderss)
 
     while True:
         print(f"Welcome {admin.name}")
@@ -54,7 +54,7 @@ def admin_menu():
         print("5. Delete Item")
         print("6. Exit")
 
-        choice = int(input("Enter Your Choice"))
+        choice = int(input("Enter Your Choice: "))
         if choice == 1:
             item_name = input("Enter Item Name: ")
             item_price = int(input("Enter Item Price: "))
@@ -70,7 +70,8 @@ def admin_menu():
             age = input("Enter Employee Age: ")
             salary = input("Enter Employee Salary: ")
             address = input("Enter Employee Address")
-            admin.add_employee( name, phone, email, address, age, designation, salary)
+            employee = Empolyee(name, phone, email, address, age, designation, salary)
+            admin.add_employee(mamar_restuarent, employee)
 
         elif choice == 3:
             admin.view_employee(mamar_restuarent)
@@ -83,3 +84,18 @@ def admin_menu():
             break
         else:
             print("Invalid Input")
+
+while True:
+    print("Welcome!!")
+    print("1. Customer")
+    print("2. Admin")
+    print("3. Exit")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        customer_menu()
+    elif choice == 2:
+        admin_menu()
+    elif choice == 3:
+        break
+    else:
+        print("Invalid Input!!")
