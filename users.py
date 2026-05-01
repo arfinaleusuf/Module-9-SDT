@@ -84,21 +84,3 @@ class Order:
     
     def clear(self):
         self.items = {}
-
-
-mamar_res = Restaurent("Mamar Restaurent")
-mn = Menu()
-item = FoodItem("pizza", 12.25, 10)
-item2 = FoodItem("Burger", 10, 30)
-admin = Admin("Rohin","rahim@gmail.com", 6546432, "Dhaka")
-admin.add_new_item(mamar_res,item)
-admin.add_new_item(mamar_res,item2)
-
-customer1 = Customer("Rohin","rahim@gmail.com", 6546432, "Dhaka")
-customer1.view_menu(mamar_res)
-
-item_name = input("enter item name: ")
-item_quantity = int(input("Enter Item Quantity: "))
-
-customer1.add_to_cart(mamar_res, item_name, item_quantity)
-customer1.view_cart()
